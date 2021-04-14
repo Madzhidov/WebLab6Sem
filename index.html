@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang= "ru">
+	<head>
+	<title> Madzhidov Shakhrom M33081 </title>
+  	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<link href="https://fonts.googleapis.com/css2?family=Jura:wght@515&di.." rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body>
+	<header> 
+		
+		<h2>Погода здесь</h2>
+		<button class="btn1" type="submit">Обновить геолокацию</button>
+		
+	</header>
+	<main>
+    <template id="loader">
+        <div class=load>
+  
+          <span>↓</span>
+          <span style="--delay: 0.1s">↓</span>
+          <span style="--delay: 0.3s">↓</span>
+          <span style="--delay: 0.4s">↓</span>
+          <span style="--delay: 0.5s">↓</span>
+      
+        </div>
+    </template>
+	<section class="Piter">
+		<div>
+			<h2 class="Piter__titel"></h2>
+			<div class="imgtemp">
+			</div>
+		</div>
+		
+			<ul class="characteristics">
+            <li>
+                <div>Ветер</div>
+                <div class="colum2 wind"></div>
+            </li>
+            <li>
+                <div>Облачность</div>
+                <div class="colum2 desc"></div>
+            </li>
+            <li>
+                <div>Давление</div>
+                <div class="colum2 pressure"></div>
+            </li>
+            <li>
+                <div>Влажность</div>
+                <div class="colum2 humidity"></div>
+            </li>
+            <li>
+                <div>Ветер</div>
+                <div class="colum2 coordinates"></div>
+            </li>
+        </ul>
+		
+	</section>
+	<section class="favorite">
+		<h2>Избранное</h2>
+		
+		<form onsubmit="return false;">
+			<input id="addcity" type="text" placeholder="Добавить новый город">
+   			<button class="btn2"><img src="img/plus.svg" alt=""></button>
+		</form>
+	</section>
+	<div class="favorites__list">
+		<template id="city">
+            <li class="favorites__item">
+        		<div class="mscBlock">
+        			<h2 class="Piter__titel">Moscow</h2>
+        			<div class="imgtemp smalltemp" >
+        				<!-- <img src="img/6380085.png"> -->
+        				5°С
+        				
+        			</div>
+        			<button class="btn3" type="submit"><img src="img/cancel.svg" alt=""></button>
+        		</div>
+    		
+    			<ul>
+                <li>
+                    <div>Ветер</div>
+                    <div class="colum2 wind">Moderate breeze, 6.0 m/s</div>
+                </li>
+                <li>
+                    <div>Облачность</div>
+                    <div class="colum2 desc">Broken clouds</div>
+                </li>
+                <li>
+                    <div>Давление</div>
+                    <div class="colum2 pressure">1013 hpa</div>
+                </li>
+                <li>
+                    <div>Влажность</div>
+                    <div class="colum2 cloud">52%</div>
+                </li>
+                <li>
+                    <div>Ветер</div>
+                    <div class="colum2 coordinates">[59.88, 30.42]</div>
+                </li>
+            </ul>
+        </li>
+	
+	   </template>
+    
+	
+	</div>
+	</main>
+	</body>
+    <script type="text/javascript" src="js/request.js"></script>
+    <script type="text/javascript" src="js/characteristics.js"></script>
+    <script type="text/javascript" src="js/htmlhelper.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</html>
