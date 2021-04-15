@@ -25,9 +25,7 @@ function dataLoad(type, loadingNode, func, delay) {
     }, delay);
 }
 
-function removeFavouriteCityButtonHandler(clone, rep) {
-   
-}
+
 
 async function currentLocationCard() {
     const currentCard = document.querySelector('.Piter');
@@ -46,7 +44,7 @@ function favouriteCityStorageHandler(type, rep, clone) {
     if (type === 'create') {
         const citySet = new Set(JSON.parse(window.localStorage.getItem('favoritesCities')));
         if (citySet.has(rep.name)) {
-            throw new CityWithThisNameHasAlreadyAtLocalStorage(rep.name);
+            throw new CityinLocalStorag(rep.name);
         }
         console.log('+')
         citySet.add(rep.name);
@@ -118,7 +116,7 @@ async function loadLocalStorageCards() {
 
 function reAdding(name) {
     this.name = "ReAdding: ";
-    this.message = `a card with location ${name} has already been created. You can only create one card for one city!`;
+    this.message = `a card with location ${name} has already been added. You can't create two card for one city!`;
     this.toString = function () {
         return this.name + this.message;
     };
