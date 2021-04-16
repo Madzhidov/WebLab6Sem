@@ -9,4 +9,5 @@ document.querySelector('.btn1').onclick = async function () {
 
 document.querySelector('.btn2').onclick = async function () {
     await createCard('create', document.getElementById('addcity').value, 'city');
+    document.getElementById('addcity').value = '';
 }

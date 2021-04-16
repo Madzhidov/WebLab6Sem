@@ -13,7 +13,7 @@ function dataLoad(type, loadingNode, func, delay) {
     const loaderClone = document.getElementById('loader').content.firstElementChild.cloneNode(true);
     const defDisp = loadingNode.style.display;
     loadingNodeClone.append(loaderClone);
-    loadingNodeClone.firstChild.style.margin = `${loadingNode.scrollHeight.valueOf() / 2}px auto`;
+    loadingNodeClone.firstChild.style.margin = `${loadingNode.scrollHeight.valueOf() / 2.8}px auto`;
     loadingNode.style.display = 'none';
     loadingNodeClone.classList.add("loading");
     loadingNodeClone.style.display = 'block';
@@ -46,7 +46,7 @@ function favouriteCityStorageHandler(type, rep, clone) {
         if (citySet.has(rep.name)) {
             throw new CityinLocalStorag(rep.name);
         }
-        console.log('+')
+        // console.log('+')
         citySet.add(rep.name);
         window.localStorage.setItem('favoritesCities', JSON.stringify(Array.from(citySet)));
     }
@@ -62,27 +62,34 @@ function favouriteCityStorageHandler(type, rep, clone) {
 async function createCard(type, cityName, templateID) {
     const parent = document.getElementsByClassName('favorites__list')[0];
     let clone = document.getElementById(templateID).content.firstElementChild.cloneNode(true);
-    console.log(parent)
-    parent.append(clone);
+    const defVal = clone.style.display;
+    clone.style.display = 'none';
+    // console.log(parent)
+	parent.append(clone);
+
     const params = htmlToObject(clone);
     await dataLoad('create', clone,
         async function () {
             fillCharacteristics(cityName, params)
                 .then(rep => {
-                   
-                        favouriteCityStorageHandler(type, rep, clone);
-                   clone.querySelector('.btn3').addEventListener('click', function () {
-                            const citySet = new Set(JSON.parse(window.localStorage.getItem('favoritesCities')));
-                            console.log(rep.city, "create", params)
-                            citySet.delete(rep.name);
-                            window.localStorage.setItem('favoritesCities', JSON.stringify(Array.from(citySet)));
-                            parent.removeChild(clone);});
+
+                    favouriteCityStorageHandler(type, rep, clone);
+    				clone.style.display = defVal;
+
+               		clone.querySelector('.btn3').addEventListener('click', function () {
+                    const citySet = new Set(JSON.parse(window.localStorage.getItem('favoritesCities')));
+                    // console.log(rep.city, "create", params)
+                    citySet.delete(rep.name);
+                    window.localStorage.setItem('favoritesCities', JSON.stringify(Array.from(citySet)));
+                    parent.removeChild(clone);});
                 })
                 .catch(er => {
                     parent.removeChild(clone);
                     alert(er);
                 });
         }, 900);
+
+
 }
 
 async function loadLocalStorageCards() {
@@ -94,12 +101,12 @@ async function loadLocalStorageCards() {
     ))
 
     f.forEach(cityStats => {
-        const parent = document.querySelector('.favorite');
+        const parent = document.querySelector('.favorites__list');
         let clone = document.getElementById('city').content.firstElementChild.cloneNode(true);
-        console.log(parent , clone)
+        // console.log(parent , clone)
         parent.append(clone);
         const params = htmlToObject(clone);
-        console.log(params)
+        // console.log(params)
         dataLoad('create', clone,
             function () {
                 let rep = fill(cityStats, params);
