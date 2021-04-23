@@ -1,4 +1,4 @@
-const APIurl = "http://shakhweather.herokuapp.com/";
+const APIurl = "https://shakhweather.herokuapp.com/";
 const badRequestStatuses = new Map([
         [400, 'Ошибка ввода!'],
         [401, 'Проблемы с подключением'],
