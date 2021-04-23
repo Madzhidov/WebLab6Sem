@@ -1,7 +1,4 @@
-const APIurl = "https://api.openweathermap.org/data/2.5/weather";
-const APIkey = "23b165255fbf21ce4cfa7be39b155b62";
-const APIlang = "ru";
-const APIunits = "metric";
+const APIurl = "http://shakhweather.herokuapp.com/";
 const badRequestStatuses = new Map([
         [400, 'Ошибка ввода!'],
         [401, 'Проблемы с подключением'],
@@ -21,9 +18,10 @@ function problemHandler(response) {
 
 async function requestLocation(location) {
     return fetch(
-        `${APIurl}?appid=${APIkey}&lang=${APIlang}&lat=${location[0]}&lon=${location[1]}&units=${APIunits}`
+        `${APIurl}weather/coordinates?lat=${location[0]}&lon=${location[1]}`
     )
         .then(response => {
+
                 return problemHandler(response);
             }
         );
@@ -31,12 +29,46 @@ async function requestLocation(location) {
 
 async function requestCity(city) {
     return fetch(
-        `${APIurl}?appid=${APIkey}&lang=${APIlang}&q=${city}&units=${APIunits}`
+        `${APIurl}weather/city?q=${city}`
     )
         .then(response => {
+
                 return problemHandler(response);
             }
         );
+}
+
+async function postCity(city) {
+
+    return fetch(
+        `${APIurl}favorites?city=${city}`, {
+            method: "POST"
+        }
+    ).then(response => {
+            return problemHandler(response);
+        }
+    );
+}
+
+async function removeCity(city) {
+    return fetch(
+        `${APIurl}favorites?city=${city}`, {
+            method: "DELETE"
+        }
+    ).then(response => {
+            return problemHandler(response);
+        }
+    );
+}
+
+async function getAll() {
+    return fetch(
+        `${APIurl}favorites`
+    ).then(response => {
+
+            return problemHandler(response);
+        }
+    );
 }
 
 

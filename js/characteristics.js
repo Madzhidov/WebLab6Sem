@@ -16,17 +16,14 @@ function htmlToObject(weatherReportList) {
 }
 
 function fill(req, params) {
-    const weather = req.weather[0];
-    const main = req.main;
     const report = params;
-    report.temperature.textContent = Math.round(main.temp) + '°C';
-    report.params['wind'].textContent = req['wind'].speed + ' m/s';
-    report.params["cloud cover"].textContent = weather.description;
-    report.params['pressure'].textContent = main.pressure + ' hpa';
-    report.params['humidity'].textContent = main.humidity + ' %';
-    report.params['coordinates'].textContent = `[${req.coord.lat.toFixed(2)}, ${req.coord.lon.toFixed(2)}]`;
-    report.cityname.textContent = `${req.name}`;
-    report.city = req.name;
+    report.temperature.textContent = req.temp;
+    report.params['wind'].textContent = req.wind;
+    report.params["cloud cover"].textContent = req.cloud;
+    report.params['pressure'].textContent = req.press;
+    report.params['humidity'].textContent = req.humidity;
+    report.params['coordinates'].textContent = `[${req.coords.lat}, ${req.coords.lon}]`;
+    report.cityname.textContent = `${req.city}`;
     return report;
 }
 
@@ -38,8 +35,7 @@ async function fillCharacteristics(locationOrCity, params) {
 
     return f(locationOrCity)
         .then(req => {
-            fill(req, params);
-            return req;
+            return fill(req, params);
         })
         .catch(error => {
             alert(error);

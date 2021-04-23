@@ -1,5 +1,4 @@
 window.onload = async function () {
-    initLocalStorage();
     await Promise.all([loadLocalStorageCards(), currentLocationCard()]);
 }
 
