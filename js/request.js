@@ -3,7 +3,9 @@ const badRequestStatuses = new Map([
         [400, 'Ошибка ввода!'],
         [401, 'Проблемы с подключением'],
         [404, 'Неправильное название города'],
-        [429, 'Превышен лимит']
+        [429, 'Превышен лимит'],
+        [409, 'Город уже существует']
+
     ]
 );
 
@@ -17,7 +19,8 @@ function problemHandler(response) {
 }
 
 async function requestLocation(location) {
-    return fetch(
+   console.log(`${APIurl}weather/coordinates?lat=${location[0]}&lon=${location[1]}`);
+   return fetch(
         `${APIurl}weather/coordinates?lat=${location[0]}&lon=${location[1]}`
     )
         .then(response => {
